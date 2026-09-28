@@ -76,13 +76,13 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
   }
 
   if (!Object.prototype.hasOwnProperty.call(books[isbn].reviews, username)) {
-    return res.status(404).json({ message: "Review not found for this user" });
+    return res.status(404).json({ message: "Review not found for ISBN " + isbn });
   }
 
   delete books[isbn].reviews[username];
 
   return res.status(200).json({
-    message: "Review deleted successfully",
+    message: "Review for ISBN " + isbn + " deleted",
     review: books[isbn].reviews
   });
 });
